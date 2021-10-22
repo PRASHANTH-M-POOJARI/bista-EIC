@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="email_template_employee_anniversary" model="mail.template">
+        <field name="name">Employee Anniversary Notification</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="email_from">${object.email}</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="subject">Happy Anniversary ${object.name}.</field>
+        <field name="body_html" type="html">
+            <table>
+                <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                    Hello,
+                    <p>Dear ${object.name},</p>
+                    You are successfully completed <strong>${object.count_year}</strong> year in Bista
+                    solutions.Pvt.Ltd. 
+                    Continue your Honesty and Effort putting for growth of company.
+                    <br/>
+                    <div dir="auto">
+                        <br>${ctx.get('anniversary_email') | safe}</br>
+                    </div>
+                    Thanks,HR Team ?
+                </p>
+            </table>
+        </field>
+    </record>
+
+    <record id="custom_paper_formates" model="report.paperformat">
+        <field name="name">Custom Report</field>
+        <field name="format">custom</field>
+        <field name="page_height">173</field>
+        <field name="page_width">108</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">00</field>
+        <field name="margin_left">0</field>
+        <field name="margin_bottom">00</field>
+        <field name="margin_right">00</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">00</field>
+        <field name="dpi">94</field>
+    </record>
+
+    <report
+            id="employee_anniversary_action_id"
+            model="hr.employee"
+            string="Employee Anniversary Certificate"
+            report_type="qweb-pdf"
+            file="employee_birthday_greetings.employee_anniversary_template_id"
+            name="employee_birthday_greetings.employee_anniversary_template_id" paperformat="employee_birthday_greetings.custom_paper_formates"
+    />
+
+    <template id="employee_anniversary_template_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page"
+                         t-attf-style="background-image:url('employee_birthday_greetings/static/description/anniversary_img.jpg');background-size:800px 500px; width:800px; height:500px;position: relative; left: -14px;bottom:0px">
+                        <div class="text-right" style="padding-top:255px;padding-right:280px;">
+                            <span style="font-family:'monospace';font-weight: bold;"
+                                  t-field="o.count_year"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

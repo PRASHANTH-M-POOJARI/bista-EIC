@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="email_template_probation_period" model="mail.template">
+        <field name="name">Employee Probation Period Notification</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="email_from">${object.email}</field>
+        <field name="email_to">${object.hr_id.work_email}</field>
+        <field name="subject">Probation Period Of ${object.name}.</field>
+        <field name="body_html" type="html">
+            <table>
+                <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                    Hello,
+                    <p>Dear ${object.parent_id.name},</p>
+                    This employee completed probation period in Bista Solutions Pvt Ltd. on this <strong>${object.confirmation_date}</strong> Date . 
+                    Please do the further process for Confirmation or Not.
+                    Thanks, Bista Solutions Pvt Ltd ?
+                </p>
+            </table>
+        </field>
+    </record>
+</odoo>
+
+<!--<strong>${ctx.get('date_scheduled')| safe}</strong>-->

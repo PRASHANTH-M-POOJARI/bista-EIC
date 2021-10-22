@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="email_template_employee_birthday_notification" model="mail.template">
+        <field name="name">Employee Birthday Notification</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="email_from">${object.email}</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="subject">Happy Birthday ${object.name}.</field>
+        <field name="body_html" type="html">
+            <table>
+                <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                    <p>Dear ${object.name},</p>
+                    ${ctx.get('report_header')| safe}
+                    <div dir="auto">
+                        <br>${ctx.get('body_action') | safe}</br>
+                    </div>
+                    ${ctx.get('report_footer')| safe}
+                </p>
+            </table>
+        </field>
+    </record>
+</odoo>
+
+
+
+
+        <!-- https://ci6.googleusercontent.com/proxy/p9IjcnIxuXtdw52Zz1_VgiUkjphUmupSSisAxYWrcY-az8ZkD5erYWjxp6WgEx0gx2tQ3EYA87h3Y4wx_amPyOz4HcY3WZWKTaMe5dRONuigGzpdlhMl8w=s0-d-e1-ft#https://c.tenor.com/89WefIVBZZgAAAAM/happy-birthday-birthday-cake.gif -->
+        <!-- https://namewishes.com/users/image.php?id=99d9117613d828ade0ee -->
+        <!-- https://www.mynameart.com/done.php?ref=1407&names%5B%5D=admin -->
+<!--         https://www.birthdayphotoframes.com/download/40-980220-->
+
+<!--                    <div dir="auto">-->
+<!--                        <br>${ctx.get('body_action') | safe}</br>-->
+<!--                    </div>-->
+<!-- <td style="padding:2px;width:30%;">-->
+<!--                        <img src="/employee_birthday_greetings/static/src/img/birthday_manish.png" style="width:125px; margin-top:8px;margin-bottom:-25px;"/>-->
+<!--                    </td>-->
+<!--                    <div>-->
+<!--                        <img src="/employee_birthday_greetings/static/src/img/birthday_manish.png" style="width:125px; margin-top:8px;margin-bottom:-25px;"/>-->
+<!--                    </div>-->

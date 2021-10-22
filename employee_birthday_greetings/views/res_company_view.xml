@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_company_extended_form" model="ir.ui.view">
+        <field name="name">view_res_company_extended_form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page" position="after">
+                <page name="birthday_format" string="Birthday Email Format">
+                    <group>
+                        <field name="report_header"/>
+                        <field name="body_action"/>
+                        <field name="report_footer"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='birthday_format']" position="after">
+                <page name="anniversary_page" string="Employee Anniversary Date">
+                    <group>
+                        <field name="anniversary_email"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
